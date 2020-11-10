@@ -14,7 +14,8 @@ class Product extends Model
         'title',
         'description',
         'price',
-        'image'
+        'image',
+        'sold'
     ];
 
     public function user()
@@ -24,6 +25,6 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 }

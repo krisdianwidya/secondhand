@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('price');
             $table->string('image');
-
+            $table->boolean('sold')->default(false);
             $table->timestamps();
         });
     }
