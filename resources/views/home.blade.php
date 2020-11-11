@@ -13,44 +13,21 @@
 
     <div class="row">
         <div class="col-md-2">
-            <select name="category" id="category" class="form-control">
-                <option value="">Category</option>
+            <div name="category" id="category" class="list-group">
+                <a class="list-group-item list-group-item-action bg-secondary text-light disabled">Category</a>
                 @foreach($categories as $category)
 
-                <option value="{{ $category->category }}">{{ $category->category }}</option>
+                <a style="cursor: pointer;" onclick="category('{{ $category->id }}')" class="list-group-item list-group-item-action">{{ $category->category }}</a>
 
                 @endforeach
-            </select>
-        </div>
-
-        <div class="col-md-8 mb-2">
-            <div class="input-group">
-                <input class="form-control" type="text" name="search" id="search" placeholder="Search stuff">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
 
-        <div class="col-md-2">
-            @auth
-            <a href="{{ route('products.create') }}" type="button" class="btn btn-primary">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                </svg>
-                Sell stuff
-            </a>
-            @endauth
-        </div>
-    </div>
-    <div class="row justify-content-center">
+        <div class="col-md-8 mb-2">
+            <div class="mb-2">
+                <input class="form-control" type="text" name="search" id="search" placeholder="Search stuff">
+            </div>
 
-        <div class="col-md-8">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -78,9 +55,22 @@
                 </a>
             </div>
         </div>
+
+        <div class="col-md-2">
+            @auth
+            <a href="{{ route('products.create') }}" type="button" class="btn btn-primary">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                </svg>
+                Sell stuff
+            </a>
+            @endauth
+        </div>
     </div>
-
-    @include('products.products')
-
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8 d-flex flex-wrap" id="products-container">
+            @include('products.products')
+        </div>
+    </div>
 </div>
 @endsection

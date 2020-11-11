@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('categorySearch', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -20,6 +20,20 @@ class ProductController extends Controller
     public function index()
     {
         //
+    }
+
+    public function categorySearch(Request $request)
+    {
+        if ($request->category) {
+            $category = Category::findOrFail($request->category);
+            $products = $category->products->sortByDesc('updated_at');
+        } elseif ($request->keyword) {
+            $products = Product::where('title', 'like', '%' . $request->keyword . '%')
+                ->orWhere('description', 'like', '%' . $request->keyword . '%')
+                ->get();
+        }
+
+        return view('products.products', compact('products'));
     }
 
     /**
