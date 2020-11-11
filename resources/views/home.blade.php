@@ -79,5 +79,8 @@
             </div>
         </div>
     </div>
+
+    @include('products.products')
+
 </div>
 @endsection

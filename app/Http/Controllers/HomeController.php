@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,8 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $categories_json = json_encode($categories);
-        return view('home', compact('categories'));
+        $products = Product::orderBy('updated_at', 'desc')->get();
+        $products_json = json_encode($products);
+        return view('home', compact('categories', 'products'));
     }
 }
