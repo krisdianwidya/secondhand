@@ -17,9 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $categories_json = json_encode($categories);
         $products = Product::orderBy('updated_at', 'desc')->get();
-        $products_json = json_encode($products);
         return view('home', compact('categories', 'products'));
     }
 }
