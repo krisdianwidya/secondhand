@@ -14,7 +14,6 @@
     <div class="row">
         <div class="col-md-2">
             <div name="category" id="category" class="list-group">
-                <a>aaa</a>
                 <a class="list-group-item list-group-item-action bg-secondary text-light disabled">Category</a>
                 @foreach($categories as $category)
 
