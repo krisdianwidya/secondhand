@@ -44,7 +44,7 @@
                                         <i class="fas fa-pen-square"></i>
                                     </a>
                                     <input type="hidden" name="input-id" id="input-id" value="{{ $product->id }}">
-                                    <a href="#" type="button" class="btn btn-secondary">
+                                    <a type="button" class="btn btn-secondary" id="delete-product">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>
