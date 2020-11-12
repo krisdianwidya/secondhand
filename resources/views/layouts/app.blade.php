@@ -98,6 +98,7 @@
         </main>
     </div>
     <script src="{{ asset('js/search_product.js') }}"></script>
+    <script src="{{ asset('js/edit_product.js') }}"></script>
 </body>
 
 </html>

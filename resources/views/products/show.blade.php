@@ -29,7 +29,7 @@
                                 </p>
                             </div>
 
-                            <div class="card-top-right">
+                            <div class="card-top-right text-right">
                                 <span class="badge @if($product->sold) badge-warning @else badge-primary @endif">
                                     @if( $product->sold )
                                     Sold
@@ -37,6 +37,19 @@
                                     Available
                                     @endif
                                 </span>
+                                @auth
+                                @if(Auth::user()->id == $product->user_id)
+                                <div class="btn-group btn-group-sm mt-md-4" role="group" aria-label="Basic example">
+                                    <a href="{{ route('products.edit', $product->id) }}" type="button" class="btn btn-primary" id="edit-product">
+                                        <i class="fas fa-pen-square"></i>
+                                    </a>
+                                    <input type="hidden" name="input-id" id="input-id" value="{{ $product->id }}">
+                                    <a href="#" type="button" class="btn btn-secondary">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                                @endif
+                                @endauth
                             </div>
                         </div>
                         <hr>

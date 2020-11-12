@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -64,22 +65,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'title' => 'required|min:5',
             'description' => 'required|min:10',
-            'categories.*' => 'required',
+            'categories' => 'required',
             'price' => 'required|min:4|numeric',
             'image' => 'required|file|mimes:jpg,jpeg,bmp,png|max:10240|dimensions:max_height=4000,max_width=4000'
         ]);
 
-        $categories = $request->input('categories.*');
+        $categories = $request->categories;
 
         if ($request->hasFile('image')) {
             $fileName = time() . '.' . $request->image->getClientOriginalName();
             $request->image->storeAs('assets/uploads', $fileName, 'public');
 
-            $product = auth()->user()->products()->create([
+            auth()->user()->products()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
@@ -107,11 +107,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('products.edit', compact('categories', 'product'));
     }
 
+    public function getProductCategories(Product $product)
+    {
+        return response()->json($product->categories);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -119,9 +124,38 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'description' => 'required|min:10',
+            'categories' => 'required',
+            'price' => 'required|min:4|numeric'
+        ]);
+
+        $categories = $request->categories;
+        $fileName = $product->image;
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . '.' . $request->image->getClientOriginalName();
+
+            // delete old image
+            if (Storage::exists('public/assets/uploads/' . $product->image)) {
+                Storage::delete('public/assets/uploads/' . $product->image);
+                $request->image->storeAs('assets/uploads', $fileName, 'public');
+            }
+        }
+
+        $product->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $fileName
+        ]);
+        // $updated_product->categories()->attach($categories);
+
+        return redirect(route('home'))->with('message', 'Stuff updated succesfully');
     }
 
     /**
