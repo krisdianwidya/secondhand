@@ -35,8 +35,6 @@ class ProductController extends Controller
                 ->get();
         }
 
-        // return response()->json($products);
-
         return view('products.products', compact('products'));
     }
 
@@ -73,8 +71,6 @@ class ProductController extends Controller
             'image' => 'required|file|mimes:jpg,jpeg,bmp,png|max:10240|dimensions:max_height=4000,max_width=4000'
         ]);
 
-        $categories = $request->categories;
-
         if ($request->hasFile('image')) {
             $fileName = time() . '.' . $request->image->getClientOriginalName();
             $request->image->storeAs('assets/uploads', $fileName, 'public');
@@ -84,7 +80,7 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'image' => $fileName
-            ])->categories()->attach($categories);
+            ])->categories()->attach($request->categories);
         }
 
         return redirect(route('home'))->with('message', 'Stuff added succesfully');
@@ -134,7 +130,6 @@ class ProductController extends Controller
             'price' => 'required|min:4|numeric'
         ]);
 
-        $categories = $request->categories;
         $fileName = $product->image;
 
         if ($request->hasFile('image')) {
@@ -153,7 +148,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'image' => $fileName
         ]);
-        // $updated_product->categories()->attach($categories);
+        $product->categories()->sync($request->categories);
 
         return redirect(route('home'))->with('message', 'Stuff updated succesfully');
     }
