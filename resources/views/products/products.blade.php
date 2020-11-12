@@ -1,3 +1,4 @@
+<!-- display product -->
 @foreach($products as $product)
 <a href="{{ route('products.show', $product->id) }}" class="col-md-4 p-0 shadow-sm text-decoration-none text-dark">
     <div class="card">

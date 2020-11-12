@@ -33,6 +33,8 @@ class ProductController extends Controller
                 ->get();
         }
 
+        // return response()->json($products);
+
         return view('products.products', compact('products'));
     }
 
