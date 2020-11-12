@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('categorySearch', 'show');
+        $this->middleware('auth')->except('categorySearch', 'show', 'userProducts');
     }
     /**
      * Display a listing of the resource.
@@ -36,6 +37,12 @@ class ProductController extends Controller
         // return response()->json($products);
 
         return view('products.products', compact('products'));
+    }
+
+    public function userProducts(User $user)
+    {
+        $products = $user->products;
+        return view('user.products', compact('products'));
     }
 
     /**
