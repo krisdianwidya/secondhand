@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
+    @if (session('message'))
+    <div class="alert alert-success alert-dismissible fade show">
+        {{ session('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <nav aria-label="breadcrumb">
@@ -43,10 +51,14 @@
                                     <a href="{{ route('products.edit', $product->id) }}" type="button" class="btn btn-primary" id="edit-product">
                                         <i class="fas fa-pen-square"></i>
                                     </a>
-                                    <input type="hidden" name="input-id" id="input-id" value="{{ $product->id }}">
+
                                     <a type="button" class="btn btn-secondary" id="delete-product">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
+                                    <form style="display:none" action="{{ route('products.destroy',$product->id) }}" id="{{ 'form-delete-'.$product->id }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 </div>
                                 @endif
                                 @endauth

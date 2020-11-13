@@ -24,7 +24,7 @@ class ProductController extends Controller
         //
     }
 
-    public function categorySearch(Request $request)
+    public function search(Request $request)
     {
         if ($request->category) {
             $category = Category::findOrFail($request->category);
@@ -150,7 +150,7 @@ class ProductController extends Controller
         ]);
         $product->categories()->sync($request->categories);
 
-        return redirect(route('home'))->with('message', 'Stuff updated succesfully');
+        return redirect(route('products.show', $product->id))->with('message', 'Stuff updated succesfully');
     }
 
     /**
@@ -161,9 +161,13 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->categories()->detach();
-        $product->delete();
 
-        return redirect(route('products.user_products', auth()->user()->id));
+        if (Storage::exists('public/assets/uploads/' . $product->image)) {
+            Storage::delete('public/assets/uploads/' . $product->image);
+            $product->categories()->detach();
+            $product->delete();
+        }
+
+        return redirect(route('products.user_products', auth()->user()->id))->with('message', 'Stuff updated succesfully');
     }
 }
