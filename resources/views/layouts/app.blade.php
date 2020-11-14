@@ -101,6 +101,7 @@
     <script src="{{ asset('js/search_product.js') }}"></script>
     <script src="{{ asset('js/edit_product.js') }}"></script>
     <script src="{{ asset('js/delete_product.js') }}"></script>
+    <script src="{{ asset('js/comments.js') }}"></script>
 </body>
 
 </html>

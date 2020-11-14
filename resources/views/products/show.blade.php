@@ -76,6 +76,33 @@
                     </div>
                 </div>
             </div>
+
+            <div class="bg-secondary rounded-sm my-md-2 text-center text-light">
+                Comments Section
+            </div>
+
+            @auth
+
+            <div class="comment">
+                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+                <div id="comment-error">
+
+                </div>
+                <button type="button" class="btn btn-primary my-md-2" id="btn-comment">Comment</button>
+            </div>
+
+
+            @endauth
+
+            @guest
+            <div>
+                <p>Login to comments</p>
+            </div>
+            @endguest
+
+            <div id="comment-content">
+
+            </div>
         </div>
     </div>
 </div>
