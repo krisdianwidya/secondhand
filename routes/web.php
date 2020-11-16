@@ -28,7 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/user/product/{user}', [ProductController::class, 'userProducts'])->name('products.user_products');
-ROute::get('/product/edit/{product}', [ProductController::class, 'getProductCategories'])->name('product.get_edit');
+Route::get('/product/edit/{product}', [ProductController::class, 'getProductCategories'])->name('product.get_edit');
 
 Route::get('/product/{product}/comments', [CommentController::class, 'index']);
-Route::post('/product/{product}/comments', [CommentController::class, 'store']);
+Route::post('/product/{product}/comment', [CommentController::class, 'store']);

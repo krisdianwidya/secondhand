@@ -7,10 +7,19 @@ function getComments() {
     .done((data) => {
         for(let i=0; i<data.length; i++){
             $('#comment-content')
-            .append(`<p class='m-0'>${data[i].user.username}</p> <p>${data[i].body}</p>`);
+            .append(`<div id='comment-${data[i].id}'><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p>
+             
+             </div>`);
         }
     }).fail((error) => {
         console.log(error);
+    })
+    .always(() => {
+        Echo.channel(`product.${pathArray[2]}`)
+            .listen('NewComment', (data) => {
+                $('#comment-content')
+                .prepend(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p> </div>`);
+            });
     });
 }
 
@@ -20,10 +29,8 @@ $('#btn-comment').on('click', () => {
         .html(`<p class='m-0 text-danger'></p>`);
     let comment_body = $('#comment').val();
 
-    // $.post(`/product/${pathArray[2]}/comments`, {_token: '{!! csrf_token() !!}', comment: comment_body})
-
     $.ajax({
-        url: `/product/${pathArray[2]}/comments`,
+        url: `/product/${pathArray[2]}/comment`,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -35,7 +42,7 @@ $('#btn-comment').on('click', () => {
     })
     .done((data) => {
         $('#comment-content')
-            .prepend(`<p class='m-0'>${data.user.username}</p> <p>${data.body}</p>`);        
+            .prepend(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p> </div>`);
     })
     .fail((error) => {
         $('#comment').addClass('is-invalid');

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
