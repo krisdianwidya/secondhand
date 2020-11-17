@@ -80,13 +80,26 @@
                             </div>
                         </div>
 
+
+
                         <div class="form-group row">
                             <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
 
                             <div class="col-md-6">
+                                <input type="file" class="filepond" name="filepond[]" multiple data-allow-reorder="true" data-max-files="3">
+                                <div class="input-group mb-3" id="img-input">
+                                    <!-- <input type="file" class="@error('image') is-invalid @enderror dropzone" id="image" name="image[]" multiple> -->
 
-                                <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+                                </div>
 
+                                <!-- <div class="d-none" id="clone-img-input">
+                                    <div class="input-group clone mb-3">
+                                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image[]">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-danger btn-remove" type="button">-</button>
+                                        </div>
+                                    </div>
+                                </div> -->
 
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,7 +97,7 @@ eval("var pathArray = window.location.pathname.split('/');\n$('#delete-product')
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**********************************************!*\
   !*** multi ./resources/js/delete_product.js ***!
   \**********************************************/

@@ -1,8 +1,14 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+@import "~filepond/dist/filepond.min.css";
+
+// Import the plugin styles
+@import "~filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+@import "~filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";

@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/comments.js": "/js/comments.js",
+    "/js/create_product.js": "/js/create_product.js",
     "/js/delete_product.js": "/js/delete_product.js",
     "/js/edit_product.js": "/js/edit_product.js",
     "/js/search_product.js": "/js/search_product.js"

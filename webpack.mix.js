@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/search_product.js', 'public/js')
+    .js('resources/js/create_product.js', 'public/js')
     .js('resources/js/edit_product.js', 'public/js')
     .js('resources/js/delete_product.js', 'public/js')
     .js('resources/js/comments.js', 'public/js')

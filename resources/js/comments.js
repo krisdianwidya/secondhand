@@ -7,7 +7,7 @@ function getComments() {
     .done((data) => {
         for(let i=0; i<data.length; i++){
             $('#comment-content')
-            .append(`<div id='comment-${data[i].id}'><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p>
+            .append(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p>
              
              </div>`);
         }
@@ -18,7 +18,7 @@ function getComments() {
         Echo.channel(`product.${pathArray[2]}`)
             .listen('NewComment', (data) => {
                 $('#comment-content')
-                .prepend(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p> </div>`);
+                .prepend(`<div><p class='m-0'>${data.comment.user.username}</p> <p >${data.comment.body}</p> </div>`);
             });
     });
 }
@@ -42,7 +42,7 @@ $('#btn-comment').on('click', () => {
     })
     .done((data) => {
         $('#comment-content')
-            .prepend(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p> </div>`);
+            .prepend(`<div><p class='m-0'>${data.user.username}</p> <p >${data.body}</p> </div>`);
     })
     .fail((error) => {
         $('#comment').addClass('is-invalid');

@@ -19,6 +19,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- fontawesome -->
@@ -98,7 +100,9 @@
             @yield('content')
         </main>
     </div>
+
     <script src="{{ asset('js/search_product.js') }}"></script>
+    <script src="{{ asset('js/create_product.js') }}"></script>
     <script src="{{ asset('js/edit_product.js') }}"></script>
     <script src="{{ asset('js/delete_product.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
