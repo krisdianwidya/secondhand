@@ -5,6 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
                 <div class="card-header">Sell Secondhand Stuff</div>
 
                 <div class="card-body">
@@ -81,25 +84,20 @@
                         </div>
 
 
-
                         <div class="form-group row">
                             <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
 
                             <div class="col-md-6">
-                                <input type="file" class="filepond" name="filepond[]" multiple data-allow-reorder="true" data-max-files="3">
-                                <div class="input-group mb-3" id="img-input">
-                                    <!-- <input type="file" class="@error('image') is-invalid @enderror dropzone" id="image" name="image[]" multiple> -->
+                                <button class="btn btn-primary" id="btn-add">+</button>
+                                <button class="btn btn-danger" id="btn-min">-</button>
+                                <div class="file-input">
+
+                                    <div class="input-increment">
+                                        <input class="mt-3 img-input form-control-file" type="file" name="image[]">
+                                    </div>
 
                                 </div>
 
-                                <!-- <div class="d-none" id="clone-img-input">
-                                    <div class="input-group clone mb-3">
-                                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image[]">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-danger btn-remove" type="button">-</button>
-                                        </div>
-                                    </div>
-                                </div> -->
 
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
@@ -111,12 +109,17 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="btn-sell">
                                     Sell
                                 </button>
                             </div>
                         </div>
                     </form>
+                    <div class="img-fil d-none">
+                        <div class="added-input">
+                            <input class="mt-3 img-input form-control-file" type="file" name="image[]">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

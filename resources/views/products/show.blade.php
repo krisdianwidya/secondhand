@@ -20,9 +20,26 @@
             </nav>
             <div class="d-flex justify-content-between">
                 <div class="card col-5">
-                    <div class="card-body row justify-content-center align-items-center">
-                        <img src="{{ asset('storage/assets/uploads/'.$product->image) }}" class="card-img-top img-fluid" style="width: 200px; height: 200px; object-fit: scale-down;" alt="...">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="false">
+                        <div class="carousel-inner">
+                            @foreach(json_decode($product->image) as $arr => $product_pic)
+                            <div class="carousel-item {{$arr == 0 ? 'active' : ''}}">
+                                <img src="{{ asset('storage/assets/uploads/'.$product_pic) }}" class="card-img-top img-fluid d-block w-100 alt=" ...">
+                            </div>
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
+                    <!-- <div class="card-body row justify-content-center align-items-center">
+                        <img src="{{ asset('storage/assets/uploads/'.$product->image) }}" class="card-img-top img-fluid" style="width: 200px; height: 200px; object-fit: scale-down;" alt="...">
+                    </div> -->
                 </div>
                 <div class="card col-6">
                     <div class="card-body">

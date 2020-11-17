@@ -68,18 +68,26 @@ class ProductController extends Controller
             'description' => 'required|min:10',
             'categories' => 'required',
             'price' => 'required|min:4|numeric',
-            'image' => 'required|file|mimes:jpg,jpeg,bmp,png|max:10240|dimensions:max_height=4000,max_width=4000'
+            'image' => 'required|array',
+            'image.*' => 'distinct|file|mimes:jpg,jpeg,bmp,png|max:10240|dimensions:max_height=4000,max_width=4000'
         ]);
 
+        foreach ($request->image as $img) {
+        }
+
         if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->image->getClientOriginalName();
-            $request->image->storeAs('assets/uploads', $fileName, 'public');
+
+            foreach ($request->image as $img_product) {
+                $fileName = time() . '.' . $img_product->getClientOriginalName();
+                $img_product->storeAs('assets/uploads', $fileName, 'public');
+                $arr_img[] = $fileName;
+            }
 
             auth()->user()->products()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'price' => $request->price,
-                'image' => $fileName
+                'image' => json_encode($arr_img)
             ])->categories()->attach($request->categories);
         }
 

@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "filepond": "^4.23.1",
+        "filepond-plugin-file-encode": "^2.1.9",
         "filepond-plugin-image-edit": "^1.6.1",
         "filepond-plugin-image-exif-orientation": "^1.0.9",
         "filepond-plugin-image-preview": "^4.6.4",
