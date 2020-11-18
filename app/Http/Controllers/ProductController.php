@@ -130,7 +130,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-
         $this->validate($request, [
             'title' => 'required|min:5',
             'description' => 'required|min:10',
@@ -138,23 +137,30 @@ class ProductController extends Controller
             'price' => 'required|min:4|numeric'
         ]);
 
-        $fileName = $product->image;
+
+        $arr_img = $product->image;
 
         if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->image->getClientOriginalName();
 
             // delete old image
-            if (Storage::exists('public/assets/uploads/' . $product->image)) {
-                Storage::delete('public/assets/uploads/' . $product->image);
-                $request->image->storeAs('assets/uploads', $fileName, 'public');
+            foreach (json_decode($product->image) as $exist_img) {
+                if (Storage::exists('public/assets/uploads/' . $exist_img)) {
+                    Storage::delete('public/assets/uploads/' . $exist_img);
+                }
             }
+            foreach ($request->image as $img_product) {
+                $fileName = time() . '.' . $img_product->getClientOriginalName();
+                $img_product->storeAs('assets/uploads', $fileName, 'public');
+                $new_img[] = $fileName;
+            }
+            $arr_img = json_encode($new_img);
         }
 
         $product->update([
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $fileName
+            'image' => $arr_img
         ]);
         $product->categories()->sync($request->categories);
 
@@ -169,12 +175,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-
-        if (Storage::exists('public/assets/uploads/' . $product->image)) {
-            Storage::delete('public/assets/uploads/' . $product->image);
-            $product->categories()->detach();
-            $product->delete();
+        foreach (json_decode($product->image) as $exist_img) {
+            if (Storage::exists('public/assets/uploads/' . $exist_img)) {
+                Storage::delete('public/assets/uploads/' . $exist_img);
+            }
         }
+
+        $product->comments()->delete();
+        $product->categories()->detach();
+        $product->delete();
 
         return redirect(route('products.user_products', auth()->user()->id))->with('message', 'Stuff updated succesfully');
     }

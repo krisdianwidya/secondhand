@@ -5,6 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
                 <div class="card-header">Edit Secondhand Stuff</div>
 
                 <div class="card-body">
@@ -88,8 +91,15 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
 
                             <div class="col-md-6">
+                                <button class="btn btn-primary" id="btn-add">+</button>
+                                <button class="btn btn-danger" id="btn-min">-</button>
+                                <div class="file-input">
 
-                                <input type="file" class="form-control-file @error('image') is-invalid @enderror" id="image" name="image">
+                                    <div class="input-increment">
+                                        <input class="mt-3 img-input form-control-file" type="file" name="image[]">
+                                    </div>
+
+                                </div>
 
 
                                 @error('image')
@@ -108,6 +118,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="img-fil d-none">
+                        <div class="added-input">
+                            <input class="mt-3 img-input form-control-file" type="file" name="image[]">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
