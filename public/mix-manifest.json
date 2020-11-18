@@ -5,5 +5,6 @@
     "/js/create_product.js": "/js/create_product.js",
     "/js/delete_product.js": "/js/delete_product.js",
     "/js/edit_product.js": "/js/edit_product.js",
+    "/js/edit_profile.js": "/js/edit_profile.js",
     "/js/search_product.js": "/js/search_product.js"
 }

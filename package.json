@@ -28,9 +28,11 @@
     "dependencies": {
         "filepond": "^4.23.1",
         "filepond-plugin-file-encode": "^2.1.9",
+        "filepond-plugin-image-crop": "^2.0.4",
         "filepond-plugin-image-edit": "^1.6.1",
         "filepond-plugin-image-exif-orientation": "^1.0.9",
         "filepond-plugin-image-preview": "^4.6.4",
+        "filepond-plugin-image-transform": "^3.7.4",
         "jquery-filepond": "^1.0.0"
     }
 }

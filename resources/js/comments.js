@@ -25,8 +25,7 @@ function getComments() {
 
 
 $('#btn-comment').on('click', () => {
-    $('#comment-error')
-        .html(`<p class='m-0 text-danger'></p>`);
+    
     let comment_body = $('#comment').val();
 
     $.ajax({

@@ -70,7 +70,7 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->id) }}">
                                     <i class="fas fa-user"></i> My Profile
                                 </a>
                                 <a class="dropdown-item" href="{{ route('products.user_products', Auth::user()->id) }}">
@@ -104,6 +104,7 @@
     <script src="{{ asset('js/edit_product.js') }}"></script>
     <script src="{{ asset('js/delete_product.js') }}"></script>
     <script src="{{ asset('js/comments.js') }}"></script>
+    <script src="{{ asset('js/edit_profile.js') }}"></script>
 </body>
 
 </html>

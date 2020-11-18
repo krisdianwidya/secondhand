@@ -16,7 +16,5 @@ $(document).ready(() => {
         });
     }else{
         console.log('not found');
-    }
-    
-    
+    } 
 });

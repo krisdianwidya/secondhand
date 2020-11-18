@@ -32,7 +32,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3" autocomplete="title">{{ old('description') }}</textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3" autocomplete="description">{{ old('description') }}</textarea>
 
                                 @error('description')
                                 <span class="invalid-feedback" role="alert">

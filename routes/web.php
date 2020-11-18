@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,10 @@ Route::get('/product/edit/{product}', [ProductController::class, 'getProductCate
 
 Route::get('/product/{product}/comments', [CommentController::class, 'index']);
 Route::post('/product/{product}/comment', [CommentController::class, 'store']);
+
+Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::get('/profile/{profile}/get', [ProfileController::class, 'getProfile'])->name('profile.get_edit');
+Route::put('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
+
+
+Route::post('/profile/picture/{profile}/update', [ProfileController::class, 'setProfilePicture']);
