@@ -7,9 +7,15 @@ function getComments() {
     .done((data) => {
         for(let i=0; i<data.length; i++){
             $('#comment-content')
-            .append(`<div><p class='m-0'>${data[i].user.username}</p> <p >${data[i].body}</p>
-             
-             </div>`);
+            .append(`<div class="d-flex">
+                <div class="mr-1">
+                    <img src="/storage/assets/profile_pic/${data[i].user.photo}" class="img-fluid rounded-circle" style="max-width: 25px;" alt="profile-picture">
+                </div>
+                <div>
+                    <p class='m-0'><strong>${data[i].user.username}</strong></p>
+                    <p>${data[i].body}</p>
+                </div>
+            </div>`);
         }
     }).fail((error) => {
         console.log(error);
@@ -18,7 +24,15 @@ function getComments() {
         Echo.channel(`product.${pathArray[2]}`)
             .listen('NewComment', (data) => {
                 $('#comment-content')
-                .prepend(`<div><p class='m-0'>${data.comment.user.username}</p> <p >${data.comment.body}</p> </div>`);
+                .prepend(`<div class="d-flex">
+                <div class="mr-1">
+                    <img src="/storage/assets/profile_pic/${data.comment.user.photo}" class="img-fluid rounded-circle" style="max-width: 25px;" alt="profile-picture">
+                </div>
+                <div>
+                    <p class='m-0'><strong>${data.comment.user.username}</strong></p>
+                    <p>${data.comment.body}</p>
+                </div>
+            </div>`);
             });
     });
 }
@@ -41,7 +55,15 @@ $('#btn-comment').on('click', () => {
     })
     .done((data) => {
         $('#comment-content')
-            .prepend(`<div><p class='m-0'>${data.user.username}</p> <p >${data.body}</p> </div>`);
+            .prepend(`<div class="d-flex">
+            <div class="mr-1">
+                <img src="/storage/assets/profile_pic/${data.user.photo}" class="img-fluid rounded-circle" style="max-width: 25px;" alt="profile-picture">
+            </div>
+            <div>
+                <p class='m-0'><strong>${data.user.username}</strong></p>
+                <p>${data.body}</p>
+            </div>
+        </div>`);
     })
     .fail((error) => {
         $('#comment').addClass('is-invalid');

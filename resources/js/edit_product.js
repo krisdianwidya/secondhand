@@ -1,3 +1,4 @@
+// showing checked checkbox
 $(document).ready(() => {
     let pathArray = window.location.pathname.split('/');
     

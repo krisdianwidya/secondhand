@@ -129,3 +129,7 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script src="{{ asset('js/edit_product.js') }}"></script>
+@endsection

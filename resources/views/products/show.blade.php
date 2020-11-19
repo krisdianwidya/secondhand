@@ -100,7 +100,7 @@
 
             @auth
 
-            <div class="comment">
+            <div class="comment mb-2">
                 <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
                 <div id="comment-error">
 
@@ -112,7 +112,7 @@
             @endauth
 
             @guest
-            <div>
+            <div class="mb-2">
                 <p>Login to comments</p>
             </div>
             @endguest
@@ -123,4 +123,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/delete_product.js') }}"></script>
+<script src="{{ asset('js/comments.js') }}"></script>
 @endsection

@@ -126,3 +126,7 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script src="{{ asset('js/create_product.js') }}"></script>
+@endsection

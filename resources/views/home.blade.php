@@ -74,3 +74,7 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script src="{{ asset('js/search_product.js') }}"></script>
+@endsection
