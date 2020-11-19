@@ -6,17 +6,36 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function edit(User $user)
+    // private $user = Auth::user();
+    public function edit()
     {
-        return view('profile.edit');
+        $user = Auth::user();
+        return view('profile.edit', compact('user'));
     }
 
     public function setProfilePicture(Request $request)
     {
-        dd($request->photo);
+        $user = Auth::user();
+
+        if ($request->hasFile('photo')) {
+            if (Storage::exists('public/assets/profile_pic/' . $user->photo)) {
+                Storage::delete('public/assets/profile_pic/' . $user->photo);
+            }
+
+            $fileName = time() . '.' . $request->photo->getClientOriginalName();
+            $request->photo->storeAs('assets/profile_pic', $fileName, 'public');
+
+            $user->update([
+                'photo' => $fileName
+            ]);
+            return response()->json('hey success');
+        } else {
+            return response()->json('hey fail');
+        }
     }
 
     public function getProfile(User $user)

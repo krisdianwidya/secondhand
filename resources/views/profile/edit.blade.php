@@ -8,7 +8,7 @@
                 <div class="card-header">My Profile</div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center mb-4">
-                        <img src="https://png.pngitem.com/pimgs/s/146-1468281_profile-icon-png-transparent-profile-picture-icon-png.png" class="img-fluid rounded-circle" style="max-width: 100px;" alt="">
+                        <img src="" class="img-fluid rounded-circle" id="pic_profile" style="max-width: 100px;" alt="profile-picture">
                     </div>
                     <form>
                         @csrf

@@ -21,10 +21,23 @@ pond.setOptions({
     instantUpload: false,
     imageCropAspectRatio: 1,
     server: {
-        url: `/profile/picture/${pathArray[2]}/update`,
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
+        
+        process: {
+            url: `/profile/picture/${pathArray[2]}/update`,
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            onload: function(){
+                getProfile();
+                Swal.fire(
+                    'Updated!',
+                    'Your profile has been updated.',
+                    'success'
+                )
+            }
+        }
+        
     }
 });
 
@@ -39,6 +52,7 @@ function getProfile(){
         $('#phone').val(data.phone);
         $('#birth_date').val(data.birth_date);
         $('#address').val(data.address);
+        $('#pic_profile').attr('src', `/storage/assets/profile_pic/${data.photo}`);
     }).fail((error) => {
         console.log(error);
     });
@@ -72,9 +86,9 @@ $('#btn-save').on('click', (e) => {
         Swal.hideLoading()
         Swal.fire(
             'Updated!',
-            'Your file has been updated.',
+            'Your profile has been updated.',
             'success'
-          )
+        )
         // $('#comment-content')
         //     .prepend(`<div><p class='m-0'>${data.user.username}</p> <p >${data.body}</p> </div>`);
     })
