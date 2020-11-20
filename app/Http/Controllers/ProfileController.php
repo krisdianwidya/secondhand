@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    // private $user = Auth::user();
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function edit()
     {
         $user = Auth::user();

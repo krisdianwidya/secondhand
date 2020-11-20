@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('categorySearch', 'show', 'userProducts');
+        $this->middleware(['auth', 'verified'])->except('categorySearch', 'show', 'userProducts');
     }
     /**
      * Display a listing of the resource.
@@ -113,6 +113,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('update-delete-product', $product);
         $categories = Category::all();
         return view('products.edit', compact('categories', 'product'));
     }
@@ -130,6 +131,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $this->authorize('update-delete-product', $product);
         $this->validate($request, [
             'title' => 'required|min:5',
             'description' => 'required|min:10',
@@ -175,6 +177,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('update-delete-product', $product);
         foreach (json_decode($product->image) as $exist_img) {
             if (Storage::exists('public/assets/uploads/' . $exist_img)) {
                 Storage::delete('public/assets/uploads/' . $exist_img);
