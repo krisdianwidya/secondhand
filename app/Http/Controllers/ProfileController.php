@@ -15,15 +15,16 @@ class ProfileController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        $user = Auth::user();
-        return view('profile.edit', compact('user'));
+        $this->authorize('update-profile', $id);
+        return view('profile.edit');
     }
 
-    public function setProfilePicture(Request $request)
+    public function setProfilePicture(Request $request, $id)
     {
         $user = Auth::user();
+        $this->authorize('update-profile', $id);
 
         if ($request->hasFile('photo')) {
             if (Storage::exists('public/assets/profile_pic/' . $user->photo)) {
@@ -36,21 +37,20 @@ class ProfileController extends Controller
             $user->update([
                 'photo' => $fileName
             ]);
-            return response()->json('hey success');
-        } else {
-            return response()->json('hey fail');
         }
     }
 
-    public function getProfile(User $user)
+    public function getProfile($id)
     {
         $user = Auth::user();
+        $this->authorize('update-profile', $id);
         return response()->json($user);
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $user = Auth::user();
+        $this->authorize('update-profile', $id);
         if ($request->ajax()) {
             if ($this->validate($request, [
                 'name' => ['required', 'string', 'max:255'],

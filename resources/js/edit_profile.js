@@ -35,6 +35,8 @@ pond.setOptions({
                     'Your profile has been updated.',
                     'success'
                 )
+                FilePond.destroy(document.querySelector('#photo'));
+                FilePond.create(document.querySelector('#photo'))
             }
         }
         
