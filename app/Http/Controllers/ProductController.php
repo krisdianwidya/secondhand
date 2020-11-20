@@ -120,7 +120,7 @@ class ProductController extends Controller
 
     public function getProductCategories(Product $product)
     {
-        return response()->json($product->categories);
+        return response()->json(['categories' => $product->categories, 'sold' => $product->sold]);
     }
     /**
      * Update the specified resource in storage.
@@ -162,6 +162,7 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
+            'sold' => $request->sold,
             'image' => $arr_img
         ]);
         $product->categories()->sync($request->categories);

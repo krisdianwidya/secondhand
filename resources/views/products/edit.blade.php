@@ -16,6 +16,23 @@
                         @method('PUT')
 
                         <div class="form-group row">
+                            <label for="sold" class="col-md-4 col-form-label text-md-right">Sold</label>
+
+                            <div class="col-md-6">
+                                <label>No </label>
+                                <input type="checkbox" class="toggle" value="{{ $product->sold }}" id="sold_toggle" name="sold">
+                                <label> Yes</label>
+
+
+                                @error('sold')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
 
                             <div class="col-md-6">
