@@ -13,6 +13,7 @@
 @import "~filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 @import "~filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css";
 
+// toggle switch sold
 #sold_toggle {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -56,4 +57,8 @@ input[type="checkbox"]:focus {
 
 .toggle:checked:after {
     transform: translatex(20px);
+}
+
+// chat
+#chat-wrapper {
 }

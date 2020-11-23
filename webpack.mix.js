@@ -18,5 +18,6 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/delete_product.js', 'public/js')
     .js('resources/js/comments.js', 'public/js')
     .js('resources/js/edit_profile.js', 'public/js')
+    .js('resources/js/chat.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();

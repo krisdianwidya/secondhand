@@ -33,7 +33,7 @@ function getComments() {
                     <p>${data.comment.body}</p>
                 </div>
             </div>`);
-            });
+        });
     });
 }
 

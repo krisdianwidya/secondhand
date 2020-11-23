@@ -162,7 +162,7 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'sold' => $request->sold,
+            'sold' => $request->sold == 0 ? 0 : 1,
             'image' => $arr_img
         ]);
         $product->categories()->sync($request->categories);

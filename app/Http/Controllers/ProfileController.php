@@ -17,14 +17,14 @@ class ProfileController extends Controller
 
     public function edit($id)
     {
-        $this->authorize('update-profile', $id);
+        $this->authorize('profile-features', $id);
         return view('profile.edit');
     }
 
     public function setProfilePicture(Request $request, $id)
     {
         $user = Auth::user();
-        $this->authorize('update-profile', $id);
+        $this->authorize('profile-features', $id);
 
         if ($request->hasFile('photo')) {
             if (Storage::exists('public/assets/profile_pic/' . $user->photo)) {
@@ -43,14 +43,14 @@ class ProfileController extends Controller
     public function getProfile($id)
     {
         $user = Auth::user();
-        $this->authorize('update-profile', $id);
+        $this->authorize('profile-features', $id);
         return response()->json($user);
     }
 
     public function update(Request $request, $id)
     {
         $user = Auth::user();
-        $this->authorize('update-profile', $id);
+        $this->authorize('profile-features', $id);
         if ($request->ajax()) {
             if ($this->validate($request, [
                 'name' => ['required', 'string', 'max:255'],

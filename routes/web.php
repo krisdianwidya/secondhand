@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,8 @@ Route::put('/profile/{profile}', [ProfileController::class, 'update'])->name('pr
 
 
 Route::post('/profile/picture/{profile}/update', [ProfileController::class, 'setProfilePicture']);
+
+Route::get('/profile/{profile}/chat', [ChatController::class, 'index'])->name('profile.chat');
+Route::get('/profile/{profile}/chat/friends', [ChatController::class, 'getFriends']);
+Route::get('/profile/{profile}/chat/friends/{receiver}', [ChatController::class, 'getPrivateMessages']);
+Route::post('/profile/{profile}/chat/friends/{receiver}', [ChatController::class, 'setPrivateMessages']);

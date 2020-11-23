@@ -37,9 +37,6 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <!-- <div class="card-body row justify-content-center align-items-center">
-                        <img src="{{ asset('storage/assets/uploads/'.$product->image) }}" class="card-img-top img-fluid" style="width: 200px; height: 200px; object-fit: scale-down;" alt="...">
-                    </div> -->
                 </div>
                 <div class="card col-6">
                     <div class="card-body">

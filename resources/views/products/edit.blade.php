@@ -10,7 +10,27 @@
                 @endforeach
                 <div class="card-header">Edit Secondhand Stuff</div>
 
+
                 <div class="card-body">
+
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="false">
+                        <div class="carousel-inner">
+                            @foreach(json_decode($product->image) as $arr => $product_pic)
+                            <div class="carousel-item {{$arr == 0 ? 'active' : ''}}">
+                                <img src="{{ asset('storage/assets/uploads/'.$product_pic) }}" class="card-img-top img-fluid d-block w-100 alt=" ...">
+                            </div>
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
                     <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

@@ -80,6 +80,9 @@
                                 <a class="dropdown-item" href="{{ route('products.user_products', Auth::user()->id) }}">
                                     <i class="fas fa-file-image"></i> My Stuff
                                 </a>
+                                <a class="dropdown-item" href="{{ route('profile.chat', Auth::user()->id) }}">
+                                    <i class="fas fa-envelope"></i> My Messages
+                                </a>
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
