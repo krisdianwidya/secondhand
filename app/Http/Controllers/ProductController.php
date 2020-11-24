@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->except('categorySearch', 'show', 'userProducts');
+        $this->middleware(['auth'])->except('categorySearch', 'show', 'userProducts');
     }
     /**
      * Display a listing of the resource.
