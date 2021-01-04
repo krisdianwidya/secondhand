@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-  var i = 1;
+  let i = 1;
 
-  $('#btn-add').on('click', (event) =>{
+  $('#btn-add').on('click', (event) => {
     event.preventDefault();
     $('.input-increment').after($('.img-fil').html());
     i++;
@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   $('#btn-min').on('click', (event) => {
     event.preventDefault();
-    if(i > 1){
+    if (i > 1) {
       $(`.file-input div:nth-child(${i})`).remove();
       i--;
     }
