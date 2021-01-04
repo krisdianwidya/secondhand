@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth'])->except('categorySearch', 'show', 'userProducts');
+        $this->middleware(['auth', 'verified'])->except('categorySearch', 'show', 'userProducts');
     }
     /**
      * Display a listing of the resource.
@@ -72,8 +72,6 @@ class ProductController extends Controller
             'image.*' => 'distinct|file|mimes:jpg,jpeg,bmp,png|max:10240|dimensions:max_height=4000,max_width=4000'
         ]);
 
-        foreach ($request->image as $img) {
-        }
 
         if ($request->hasFile('image')) {
 
